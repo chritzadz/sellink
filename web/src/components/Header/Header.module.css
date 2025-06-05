@@ -1,7 +1,17 @@
 .headerShop {
-    height: 100px; /* Set the height */
-    background-color: red; /* Optional: background color */
-    display: flex; /* Optional: flexbox for centering */
-    align-items: center; /* Optional: vertically center content */
-    justify-content: center; /* Optional: horizontally center content */
+    height: 70px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.headerShop h1{
+    font-size: 30px;
+    margin: 0 0 0 15px;
+}
+
+.headerShop img {
+    width: 30px;
+    height: auto;
 }
