@@ -1,17 +1,21 @@
-import ListGroup from './components/ListGroup';
 import Header from './components/Header';
-import Item from './Model/Item';
+import CategoryFrame from "./components/CategoryFrame";
 
 function App() {
-    const itemsExample = [
-        new Item("Chris", 6, "USD"),
-        new Item("Hello", 5, "IDR")
+    const categoriesExample = [
+        "Bla",
+        "Ble",
+        "Bli"
     ]
 
     return (
         <>
             <div><Header/></div>
-            <div><ListGroup items={itemsExample} /></div>
+            <div>
+                {categoriesExample.map((category, index) => (
+                    <CategoryFrame key={index} categoryName={category} />
+                ))}
+            </div>
         </>
     );
 }
