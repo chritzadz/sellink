@@ -1,0 +1,24 @@
+# Ignore IntelliJ IDEA files
+.idea/
+*.iml
+
+# Ignore local configuration files
+*.log
+*.tmp
+
+# Node modules
+node_modules/
+
+# Build output
+build/
+dist/
+
+# Environment variables
+.env
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Other IDE files
+.vscode/
