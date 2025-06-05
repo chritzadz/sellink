@@ -1,6 +1,6 @@
 import styles from './ItemFrame.module.css';
 import pandaLogo from './panda_with_cord.jpg';
-import type Item from "../../Model/Item.ts";
+import type Item from "../../model/Item.ts";
 
 interface ItemFrameProps {
     index: number;

@@ -1,6 +1,6 @@
 import styles from './CategoryFrame.module.css';
 import ListGroup from "../ListGroup";
-import Item from "../../Model/Item.ts";
+import Item from "../../model/Item.ts";
 
 interface CategoryFrameProps {
     categoryName: string;

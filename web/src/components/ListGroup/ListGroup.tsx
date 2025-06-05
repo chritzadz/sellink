@@ -1,6 +1,6 @@
 import ItemFrame from '../ItemFrame';
 import styles from './ListGroup.module.css';
-import type Item from "../../Model/Item.ts";
+import type Item from "../../model/Item.ts";
 
 interface ListGroupProps {
     items: Item[];
