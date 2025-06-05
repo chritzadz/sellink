@@ -25,4 +25,6 @@ dist-ssr
 
 #database API
 database/firebase.js
+
+#keys
 .env
