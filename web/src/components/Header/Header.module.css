@@ -1,0 +1,7 @@
+.headerShop {
+    height: 100px; /* Set the height */
+    background-color: red; /* Optional: background color */
+    display: flex; /* Optional: flexbox for centering */
+    align-items: center; /* Optional: vertically center content */
+    justify-content: center; /* Optional: horizontally center content */
+}
