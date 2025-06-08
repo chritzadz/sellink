@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Navigation3Guide"
+rootProject.name = "sellink"
 include(":app")
  

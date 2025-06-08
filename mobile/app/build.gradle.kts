@@ -10,7 +10,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.plcoding.navigation3guide"
+        applicationId = "com.sellink.app"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
