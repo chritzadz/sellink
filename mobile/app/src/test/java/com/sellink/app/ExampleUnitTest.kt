@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.sellink.app
 
 import org.junit.Test
 
