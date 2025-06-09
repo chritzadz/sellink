@@ -3,7 +3,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.ui.graphics.Color
-import com.sellink.app.presentation.component.SelectedNavItem
+import com.sellink.app.data.SelectedNavItem
 
 
 @Composable

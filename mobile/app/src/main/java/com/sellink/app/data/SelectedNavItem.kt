@@ -1,4 +1,4 @@
-package com.sellink.app.presentation.component
+package com.sellink.app.data
 
 class SelectedNavItem {
     companion object {

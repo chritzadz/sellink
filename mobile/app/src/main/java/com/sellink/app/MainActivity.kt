@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import com.sellink.app.presentation.navigation.NavigationController
+import com.sellink.app.presentation.screen.HomeScreenPreview
 import com.sellink.app.presentation.theme.simpleTheme
 
 class MainActivity: ComponentActivity(){
