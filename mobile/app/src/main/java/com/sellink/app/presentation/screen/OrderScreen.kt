@@ -51,7 +51,56 @@ fun OrderScreen(
         )),
         Order(101010, "Order1", listOf(
             Good("good1", 50000.0)
-        ))
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
+        Order(101010, "Order1", listOf(
+            Good("good1", 50000.0)
+        )),
     )
 
     Scaffold(
