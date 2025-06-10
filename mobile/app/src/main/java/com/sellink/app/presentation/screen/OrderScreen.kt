@@ -44,64 +44,6 @@ fun OrderScreen(
     onStoreNavClick: () -> Unit,
     onHomeNavClick: () -> Unit
 ) {
-    val tempOrderList: List<Order> = listOf(
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-        Order(101010, "Order1", listOf(
-            Good("good1", 50000.0)
-        )),
-    )
-
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
@@ -158,7 +100,7 @@ fun OrderScreen(
                     }
                 }
             }
-            OrderList(tempOrderList)
+            //OrderList(tempOrderList)
         }
     }
 }

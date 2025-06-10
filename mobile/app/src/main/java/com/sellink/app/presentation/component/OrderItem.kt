@@ -75,7 +75,4 @@ fun OrderItem(order: Order) {
 @Preview
 @Composable
 fun OrderItemPreview(){
-    OrderItem(Order(101010, "Pending", listOf(
-        Good("Good 1", 50000.0)
-    )));
 }
