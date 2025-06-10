@@ -40,7 +40,6 @@ import com.sellink.app.presentation.component.OrderList
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OrderScreen(
-    modifier: Modifier = Modifier,
     onOrderNavClick: () -> Unit,
     onStoreNavClick: () -> Unit,
     onHomeNavClick: () -> Unit
@@ -168,8 +167,6 @@ fun OrderScreen(
 @Composable
 fun OrderScreenPreview() {
     OrderScreen(
-        modifier = Modifier
-            .fillMaxSize(),
         onOrderNavClick = { /* Handle Order Navigation */ },
         onStoreNavClick = { /* Handle Store Navigation */ },
         onHomeNavClick = { /* Handle Home Navigation */ }
