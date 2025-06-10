@@ -24,3 +24,4 @@ Thumbs.db
 .vscode/
 
 /mobile/app/src/main/java/com/sellink/app/data/api/
+/mobile/app/src/main/google-services.json
