@@ -23,4 +23,4 @@ Thumbs.db
 # Other IDE files
 .vscode/
 
-./mobile/app/src/main/java/com/sellink/app/data/api/
+/mobile/app/src/main/java/com/sellink/app/data/api/
