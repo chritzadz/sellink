@@ -14,6 +14,6 @@ class OrderUseCase() {
             "price" to good.price,
             "currency" to good.currency,
             "category" to good.category)
-        db.collection("good").add(good).await()
+        db.collection("chris_restaurant")
     }
 }
