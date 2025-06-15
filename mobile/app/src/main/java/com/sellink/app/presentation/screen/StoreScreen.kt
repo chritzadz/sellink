@@ -40,6 +40,9 @@ fun StoreScreen(
     categories: StateFlow<List<String>>,
     goods: StateFlow<List<Good>>
 ) {
+    val categoryList = categories.collectAsState().value
+    val goodsList = goods.collectAsState().value
+
     Scaffold(
         modifier = Modifier
             .fillMaxWidth(),
@@ -67,7 +70,7 @@ fun StoreScreen(
                     .padding(10.dp)
             )
             LazyColumn {
-                items(categories.value) { category ->
+                items(categoryList) { category ->
                     Text(
                         text = category,
                         fontSize = 20.sp,
@@ -82,16 +85,15 @@ fun StoreScreen(
                             .background(Color.Green)
                             .height(150.dp)
                     ){
-                        repeat(getGoodsByCategorySize(category, goods.collectAsState().value)){ index ->
+                        repeat(getGoodsByCategorySize(category, goodsList)){ index ->
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(10.dp)
                                     .horizontalScroll(rememberScrollState())
                             ) {
                                 Text(
-                                    text = getGoodsByCategory(category, goods.collectAsState().value)[index].name,
-                                    modifier = Modifier.padding(16.dp),
+                                    text = getGoodsByCategory(category, goodsList)[index].name,
+                                    modifier = Modifier,
                                 )
                             }
                         }
@@ -115,6 +117,11 @@ fun StoreScreenPreview() {
                 currency = "IDR"
             ),
             Good(
+                name = "Good3", price = 10.0,
+                category = "Category1",
+                currency = "IDR"
+            ),
+            Good(
                 name = "Good2", price = 10.0,
                 category = "Category2",
                 currency = "IDR"
@@ -134,15 +141,23 @@ fun StoreScreenPreview() {
 }
 
 fun getGoodsByCategory(category: String, goods: List<Good>): List<Good> {
-    var tempList: List<Good> = goods.filter { good ->
-        good.category == category
+    val tempList = mutableListOf<Good>()
+
+    for (good in goods) {
+        if (good.category == category) {
+            tempList.add(good)
+        }
     }
     return tempList
 }
 
 fun getGoodsByCategorySize(category: String, goods: List<Good>): Int {
-    var tempList: List<Good> = goods.filter { good ->
-        good.category == category
+    val tempList = mutableListOf<Good>()
+
+    for (good in goods) {
+        if (good.category == category) {
+            tempList.add(good)
+        }
     }
     return tempList.size
 }

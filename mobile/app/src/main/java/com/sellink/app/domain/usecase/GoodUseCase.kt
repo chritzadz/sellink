@@ -43,12 +43,20 @@ class GoodUseCase {
         val categorySnapshot = ref.get().await()
 
         for (categoryDocument in categorySnapshot.documents) {
-            val goodsRef = ref.document(categoryDocument.id).collection("goods")
+            val goodsRef = ref.document(categoryDocument.id).collection("good")
 
             val goodsSnapshot = goodsRef.get().await()
-            goodsList.addAll(goodsSnapshot.documents.mapNotNull { goodsDocument ->
-                goodsDocument.toObject(Good::class.java)
-            })
+            for (goodsDocument in goodsSnapshot.documents) {
+                val name = goodsDocument.getString("name") ?: ""
+                val price = goodsDocument.getDouble("price") ?: 0.0
+                val category = goodsDocument.getString("category") ?: ""
+                val currency = goodsDocument.getString("currency") ?: ""
+
+                println(name);
+
+                val good = Good(name, price, category, currency)
+                goodsList.add(good)
+            }
         }
         return goodsList
     }
