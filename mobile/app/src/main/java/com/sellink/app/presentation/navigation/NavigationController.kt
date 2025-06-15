@@ -9,6 +9,7 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSavedStateNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.navigation3.ui.rememberSceneSetupNavEntryDecorator
+import com.sellink.app.domain.usecase.GoodUseCase
 import com.sellink.app.presentation.screen.HomeScreen
 import com.sellink.app.presentation.screen.OrderScreen
 import com.sellink.app.presentation.screen.StoreScreen
@@ -28,6 +29,8 @@ fun NavigationController (
     modifier: Modifier = Modifier
 ) {
     val backStack = rememberNavBackStack(HomeScreen)
+    var goodUseCase = GoodUseCase()
+
     NavDisplay(
         backStack = backStack,
         entryDecorators = listOf(
@@ -84,6 +87,9 @@ fun NavigationController (
                             },
                             onStoreNavClick = {
                                 backStack.add(StoreScreen)
+                            },
+                            onAddGood = { good ->
+                                goodUseCase.addGood(good);
                             }
                         )
                     }
