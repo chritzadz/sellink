@@ -25,4 +25,15 @@ class CategoryUseCase {
             }
         }.await()
     }
+
+    suspend fun getCategories() : List<String>{
+        val ref = db.collection("store")
+            .document("chris_restaurant")
+            .collection("categories")
+
+        val snapshot = ref.get().await()
+        return snapshot.documents.mapNotNull { document ->
+            document.getString("name")
+        }
+    }
 }

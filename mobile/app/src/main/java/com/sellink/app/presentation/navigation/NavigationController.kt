@@ -1,6 +1,14 @@
 package com.sellink.app.presentation.navigation
+import StoreViewModel
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
@@ -13,6 +21,7 @@ import com.sellink.app.domain.usecase.GoodUseCase
 import com.sellink.app.presentation.screen.HomeScreen
 import com.sellink.app.presentation.screen.OrderScreen
 import com.sellink.app.presentation.screen.StoreScreen
+import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -29,8 +38,8 @@ fun NavigationController (
     modifier: Modifier = Modifier
 ) {
     val backStack = rememberNavBackStack(HomeScreen)
-    var goodUseCase = GoodUseCase()
-    var categoryUseCase = CategoryUseCase()
+
+    val storeViewModel: StoreViewModel = viewModel()
 
     NavDisplay(
         backStack = backStack,
@@ -90,13 +99,15 @@ fun NavigationController (
                                 backStack.add(StoreScreen)
                             },
                             onAddGood = { good ->
-                                goodUseCase.addGood(good)
+                                storeViewModel.addGood(good)
                             },
                             onAddCategory = { category ->
-                                categoryUseCase.addCategory(category)
+                                storeViewModel.addCategory(category)
                             },
-                            categories = TODO(),
-                            goods = TODO()
+                            categories =
+                                storeViewModel.categories,
+                            goods =
+                                storeViewModel.goods
                         )
                     }
                 }

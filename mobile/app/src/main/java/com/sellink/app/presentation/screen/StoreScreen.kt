@@ -13,13 +13,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -28,7 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sellink.app.data.SelectedNavItem
 import com.sellink.app.domain.models.Good
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.StateFlow
+import androidx.compose.runtime.collectAsState
+import kotlinx.coroutines.flow.MutableStateFlow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,11 +37,9 @@ fun StoreScreen(
     onHomeNavClick: () -> Unit,
     onAddGood: suspend (Good) -> Unit,
     onAddCategory: suspend (String) -> Unit,
-    categories: List<String>,
-    goods: List<Good>
+    categories: StateFlow<List<String>>,
+    goods: StateFlow<List<Good>>
 ) {
-    val coroutineScope = rememberCoroutineScope()
-
     Scaffold(
         modifier = Modifier
             .fillMaxWidth(),
@@ -70,7 +67,7 @@ fun StoreScreen(
                     .padding(10.dp)
             )
             LazyColumn {
-                items(categories) { category ->
+                items(categories.value) { category ->
                     Text(
                         text = category,
                         fontSize = 20.sp,
@@ -85,7 +82,7 @@ fun StoreScreen(
                             .background(Color.Green)
                             .height(150.dp)
                     ){
-                        repeat(getGoodsByCategorySize(category, goods)){ index ->
+                        repeat(getGoodsByCategorySize(category, goods.collectAsState().value)){ index ->
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -93,7 +90,7 @@ fun StoreScreen(
                                     .horizontalScroll(rememberScrollState())
                             ) {
                                 Text(
-                                    text = getGoodsByCategory(category, goods).get(index).name,
+                                    text = getGoodsByCategory(category, goods.collectAsState().value)[index].name,
                                     modifier = Modifier.padding(16.dp),
                                 )
                             }
@@ -108,14 +105,31 @@ fun StoreScreen(
 @Preview(showBackground = true)
 @Composable
 fun StoreScreenPreview() {
+    // Create sample data
+    val sampleCategories = MutableStateFlow(listOf<String>("Category1", "Category2", "Category3"))
+    val sampleGoods = MutableStateFlow(
+        listOf<Good>(
+            Good(
+                name = "Good1", price = 10.0,
+                category = "Category1",
+                currency = "IDR"
+            ),
+            Good(
+                name = "Good2", price = 10.0,
+                category = "Category2",
+                currency = "IDR"
+            )
+        )
+    )
+
     StoreScreen(
         onOrderNavClick = { /* Handle Order Navigation */ },
         onStoreNavClick = { /* Handle Store Navigation */ },
         onHomeNavClick = { /* Handle Home Navigation */ },
         onAddGood = {},
         onAddCategory = {},
-        categories = listOf<String>("Category1", "Category2"),
-        goods = listOf<Good>()
+        categories = sampleCategories,
+        goods = sampleGoods
     )
 }
 

@@ -32,4 +32,24 @@ class GoodUseCase {
             }
         }.await()
     }
+
+    suspend fun getGoods() : List<Good>{
+        val goodsList = mutableListOf<Good>()
+
+        val ref = db.collection("store")
+            .document("chris_restaurant")
+            .collection("categories")
+
+        val categorySnapshot = ref.get().await()
+
+        for (categoryDocument in categorySnapshot.documents) {
+            val goodsRef = ref.document(categoryDocument.id).collection("goods")
+
+            val goodsSnapshot = goodsRef.get().await()
+            goodsList.addAll(goodsSnapshot.documents.mapNotNull { goodsDocument ->
+                goodsDocument.toObject(Good::class.java)
+            })
+        }
+        return goodsList
+    }
 }
