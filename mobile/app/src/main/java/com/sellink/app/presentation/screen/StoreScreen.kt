@@ -27,6 +27,7 @@ import com.sellink.app.data.SelectedNavItem
 import com.sellink.app.domain.models.Good
 import kotlinx.coroutines.flow.StateFlow
 import androidx.compose.runtime.collectAsState
+import com.sellink.app.presentation.component.GoodItem
 import kotlinx.coroutines.flow.MutableStateFlow
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -88,13 +89,10 @@ fun StoreScreen(
                         repeat(getGoodsByCategorySize(category, goodsList)){ index ->
                             Box(
                                 modifier = Modifier
-                                    .fillMaxWidth()
                                     .horizontalScroll(rememberScrollState())
+                                    .padding(2.dp)
                             ) {
-                                Text(
-                                    text = getGoodsByCategory(category, goodsList)[index].name,
-                                    modifier = Modifier,
-                                )
+                                GoodItem(getGoodsByCategory(category, goodsList)[index])
                             }
                         }
                     }
