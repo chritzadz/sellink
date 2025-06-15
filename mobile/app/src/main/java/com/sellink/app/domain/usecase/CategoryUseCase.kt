@@ -20,6 +20,8 @@ class CategoryUseCase {
             }
             else {
                 println("ADD SUCCESSFULL")
+                val data = mapOf("name" to category)
+                ref.set(data)
             }
         }.await()
     }

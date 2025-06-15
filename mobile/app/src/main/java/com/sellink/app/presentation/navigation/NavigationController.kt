@@ -4,11 +4,11 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
-import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSavedStateNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.navigation3.ui.rememberSceneSetupNavEntryDecorator
+import com.sellink.app.domain.usecase.CategoryUseCase
 import com.sellink.app.domain.usecase.GoodUseCase
 import com.sellink.app.presentation.screen.HomeScreen
 import com.sellink.app.presentation.screen.OrderScreen
@@ -30,6 +30,7 @@ fun NavigationController (
 ) {
     val backStack = rememberNavBackStack(HomeScreen)
     var goodUseCase = GoodUseCase()
+    var categoryUseCase = CategoryUseCase()
 
     NavDisplay(
         backStack = backStack,
@@ -89,8 +90,13 @@ fun NavigationController (
                                 backStack.add(StoreScreen)
                             },
                             onAddGood = { good ->
-                                goodUseCase.addGood(good);
-                            }
+                                goodUseCase.addGood(good)
+                            },
+                            onAddCategory = { category ->
+                                categoryUseCase.addCategory(category)
+                            },
+                            categories = TODO(),
+                            goods = TODO()
                         )
                     }
                 }
