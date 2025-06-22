@@ -27,6 +27,7 @@ import com.sellink.app.data.SelectedNavItem
 import com.sellink.app.domain.models.Good
 import kotlinx.coroutines.flow.StateFlow
 import androidx.compose.runtime.collectAsState
+import com.sellink.app.presentation.component.AddGoodItem
 import com.sellink.app.presentation.component.GoodItem
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -39,7 +40,8 @@ fun StoreScreen(
     onAddGood: suspend (Good) -> Unit,
     onAddCategory: suspend (String) -> Unit,
     categories: StateFlow<List<String>>,
-    goods: StateFlow<List<Good>>
+    goods: StateFlow<List<Good>>,
+    onGoodItemClick: (Good) -> Unit
 ) {
     val categoryList = categories.collectAsState().value
     val goodsList = goods.collectAsState().value
@@ -92,9 +94,12 @@ fun StoreScreen(
                                     .horizontalScroll(rememberScrollState())
                                     .padding(2.dp)
                             ) {
-                                GoodItem(getGoodsByCategory(category, goodsList)[index])
+                                GoodItem(getGoodsByCategory(category, goodsList)[index]) {
+                                    onGoodItemClick(getGoodsByCategory(category, goodsList)[index])
+                                }
                             }
                         }
+                        AddGoodItem()
                     }
                 }
             }
@@ -120,6 +125,16 @@ fun StoreScreenPreview() {
                 currency = "IDR"
             ),
             Good(
+                name = "Good3", price = 10.0,
+                category = "Category1",
+                currency = "IDR"
+            ),
+            Good(
+                name = "Good3", price = 10.0,
+                category = "Category1",
+                currency = "IDR"
+            ),
+            Good(
                 name = "Good2", price = 10.0,
                 category = "Category2",
                 currency = "IDR"
@@ -134,7 +149,8 @@ fun StoreScreenPreview() {
         onAddGood = {},
         onAddCategory = {},
         categories = sampleCategories,
-        goods = sampleGoods
+        goods = sampleGoods,
+        onGoodItemClick = {}
     )
 }
 

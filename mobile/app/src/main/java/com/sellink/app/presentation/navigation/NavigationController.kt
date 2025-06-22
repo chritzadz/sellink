@@ -16,8 +16,10 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSavedStateNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.navigation3.ui.rememberSceneSetupNavEntryDecorator
+import com.sellink.app.domain.models.Good
 import com.sellink.app.domain.usecase.CategoryUseCase
 import com.sellink.app.domain.usecase.GoodUseCase
+import com.sellink.app.presentation.screen.GoodDetailScreen
 import com.sellink.app.presentation.screen.HomeScreen
 import com.sellink.app.presentation.screen.OrderScreen
 import com.sellink.app.presentation.screen.StoreScreen
@@ -32,6 +34,9 @@ data object OrderScreen: NavKey
 
 @Serializable
 data object StoreScreen: NavKey
+
+@Serializable
+data class GoodDetailScreen(val good: Good): NavKey
 
 @Composable
 fun NavigationController (
@@ -107,8 +112,18 @@ fun NavigationController (
                             categories =
                                 storeViewModel.categories,
                             goods =
-                                storeViewModel.goods
+                                storeViewModel.goods,
+                            onGoodItemClick = { good ->
+                                backStack.add(GoodDetailScreen(good))
+                            }
                         )
+                    }
+                }
+                is GoodDetailScreen -> {
+                    NavEntry(
+                        key = key
+                    ) {
+                        GoodDetailScreen(good = key.good)
                     }
                 }
                 else -> throw RuntimeException("Invalid Key Route")

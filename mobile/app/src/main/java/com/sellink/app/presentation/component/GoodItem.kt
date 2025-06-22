@@ -1,10 +1,12 @@
 package com.sellink.app.presentation.component
 
+import android.content.Intent
 import android.view.RoundedCorner
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -28,7 +29,10 @@ import com.sellink.app.R
 import com.sellink.app.domain.models.Good
 
 @Composable
-fun GoodItem(good: Good) {
+fun GoodItem(
+    good: Good,
+    onClick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .height(150.dp)
@@ -36,6 +40,7 @@ fun GoodItem(good: Good) {
             .border(
                 border = BorderStroke(1.dp, Color.Black),
                 shape = RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp))
+            .clickable(onClick = onClick)
     ){
         Column {
             Image(
@@ -86,6 +91,7 @@ fun GoodItemPreview(){
             name = "Good3", price = 10000.0,
             category = "Category1",
             currency = "IDR"
-        )
+        ),
+        onClick = {}
     )
 }
