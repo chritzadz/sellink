@@ -1,17 +1,17 @@
 package com.sellink.app.presentation.screen
 
-import CustomNavBar
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
+
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -27,13 +27,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.material3.TextField
 import com.sellink.app.domain.models.Good
 
 @Composable
 fun GoodDetailScreen(
     modifier: Modifier = Modifier,
-    good: Good
+    good: Good,
+    onBackButtonClick: () -> Unit,
+    onUpdateButtonClick: (Good, Good) -> Unit
 ) {
     var name by remember { mutableStateOf(good.name) }
     var price by remember { mutableStateOf(good.price.toString()) }
@@ -102,25 +103,28 @@ fun GoodDetailScreen(
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-//                    Row {
-//                        Button(
-//                            onClick = {
-//                                onUpdate(Good(name, price.toDoubleOrNull() ?: 0.0, category, currency))
-//                            },
-//                            modifier = Modifier.weight(1f)
-//                        ) {
-//                            Text("Update")
-//                        }
-//
-//                        Spacer(modifier = Modifier.width(8.dp))
-//
-//                        Button(
-//                            onClick = onBack,
-//                            modifier = Modifier.weight(1f)
-//                        ) {
-//                            Text("Back")
-//                        }
-//                    }
+                    Row {
+                        Button(
+                            onClick = {
+                                onUpdateButtonClick(
+                                    good,
+                                    Good(name, price.toDoubleOrNull() ?: 0.0, category, currency)
+                                )
+                            },
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Update")
+                        }
+
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                        Button(
+                            onClick = onBackButtonClick,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Back")
+                        }
+                    }
                 }
             }
         }
@@ -137,6 +141,8 @@ fun GoodDetailScreenPreview() {
             name = "Good2", price = 10.0,
             category = "Category2",
             currency = "IDR"
-        )
+        ),
+        onBackButtonClick = {},
+        onUpdateButtonClick = {} as (Good, Good) -> Unit
     )
 }

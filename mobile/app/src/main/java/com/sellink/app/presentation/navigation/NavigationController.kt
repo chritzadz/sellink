@@ -123,7 +123,17 @@ fun NavigationController (
                     NavEntry(
                         key = key
                     ) {
-                        GoodDetailScreen(good = key.good)
+                        GoodDetailScreen(
+                            good = key.good,
+                            onBackButtonClick = {
+                                backStack.add(StoreScreen)
+
+                            },
+                            onUpdateButtonClick = { old, new ->
+                                storeViewModel.updateGood(old, new)
+                                backStack.removeAt(backStack.size - 1)
+                            }
+                        )
                     }
                 }
                 else -> throw RuntimeException("Invalid Key Route")

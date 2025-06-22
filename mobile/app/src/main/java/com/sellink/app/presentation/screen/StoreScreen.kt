@@ -85,7 +85,6 @@ fun StoreScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(10.dp)
-                            .background(Color.Green)
                             .height(150.dp)
                     ){
                         repeat(getGoodsByCategorySize(category, goodsList)){ index ->

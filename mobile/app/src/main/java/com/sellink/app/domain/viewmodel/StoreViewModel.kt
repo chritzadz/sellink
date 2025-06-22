@@ -28,6 +28,8 @@ class StoreViewModel(
     fun addGood(good: Good) {
         viewModelScope.launch {
             goodUseCase.addGood(good)
+            _categories.value = categoryUseCase.getCategories()
+            _goods.value = goodUseCase.getGoods()
         }
     }
 
@@ -35,6 +37,21 @@ class StoreViewModel(
         viewModelScope.launch {
             categoryUseCase.addCategory(category)
             _categories.value = categoryUseCase.getCategories()
+            _goods.value = goodUseCase.getGoods()
+        }
+    }
+
+    fun updateGood(old: Good, new: Good){
+        viewModelScope.launch {
+            goodUseCase.addGood(new)
+            goodUseCase.deleteGood(old)
+
+            val currentGoods = _goods.value.toMutableList()
+            val index = currentGoods.indexOf(old)
+            if (index != -1) {
+                currentGoods[index] = new
+                _goods.value = currentGoods
+            }
         }
     }
 }

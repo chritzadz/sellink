@@ -33,6 +33,21 @@ class GoodUseCase {
         }.await()
     }
 
+    suspend fun deleteGood(good: Good){
+        val ref = db.collection("store")
+            .document("chris_restaurant")
+            .collection("categories")
+            .document(good.category)
+            .collection("good")
+            .document(good.name)
+
+        ref.get().addOnSuccessListener { document ->
+            if (document != null && document.exists()){
+                ref.delete()
+            }
+        }.await()
+    }
+
     suspend fun getGoods() : List<Good>{
         val goodsList = mutableListOf<Good>()
 
