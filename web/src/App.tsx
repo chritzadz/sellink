@@ -9,7 +9,7 @@ interface Category {
 }
 
 function App() {
-    const [categories, setCategories] = useState<Category[]>([]); //use type becaue typescript
+    const [categories, setCategories] = useState<Category[]>([]); //use type because typescript
     useEffect(
         () =>
             //for now we are gonna use chris_restaurant. I will make an account feature
@@ -23,7 +23,7 @@ function App() {
     return (
         <>
             <div><Header/></div>
-            <div>
+            <div className = "flex">
                 {categories.map((category, index) => (
                     <CategoryFrame categoryName={category.name} categoryIndex={index} />
                 ))}
