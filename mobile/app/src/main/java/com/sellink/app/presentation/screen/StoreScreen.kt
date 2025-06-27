@@ -100,11 +100,11 @@ fun StoreScreen(
                             .fillMaxWidth()
                             .padding(start = 10.dp)
                             .height(150.dp)
+                            .horizontalScroll(rememberScrollState())
                     ){
                         repeat(getGoodsByCategorySize(category, goodsList.value)){ index ->
                             Box(
                                 modifier = Modifier
-                                    .horizontalScroll(rememberScrollState())
                                     .padding(2.dp)
                             ) {
                                 GoodItem(getGoodsByCategory(category, goodsList.value)[index]) {
