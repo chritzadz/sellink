@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.sellink.app.R
 import com.sellink.app.domain.models.Good
@@ -57,12 +58,15 @@ fun GoodItem(
                 text = good.name,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
+                lineHeight = 1.em,
                 modifier = Modifier
                     .padding(top = 3.dp, start = 5.dp)
+
             )
             Text(
-                text = "This is the description of the product, and yeah we will make it two line",
+                text = "This is the description of the product",
                 fontSize = 6.sp,
+                lineHeight = 1.em,
                 modifier = Modifier
                     .padding(top = 2.dp, start = 5.dp, end = 5.dp)
             )
@@ -74,6 +78,7 @@ fun GoodItem(
                 Text(
                     text = "${good.currency} ${good.price}",
                     fontSize = 8.sp,
+                    lineHeight = 1.em,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .weight(1f)

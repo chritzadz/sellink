@@ -62,10 +62,10 @@ class GoodUseCase {
 
             val goodsSnapshot = goodsRef.get().await()
             for (goodsDocument in goodsSnapshot.documents) {
-                val name = goodsDocument.getString("name") ?: ""
-                val price = goodsDocument.getDouble("price") ?: 0.0
+                val name = goodsDocument.id
+                val price = goodsDocument["price"].toString().toDouble()
                 val category = categoryDocument.id
-                val currency = goodsDocument.getString("currency") ?: ""
+                val currency = goodsDocument["currency"].toString()
 
                 println(name);
 
