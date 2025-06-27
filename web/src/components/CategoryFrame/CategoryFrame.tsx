@@ -11,17 +11,17 @@ interface CategoryFrameProps {
 }
 
 function CategoryFrame({categoryName, categoryIndex}: CategoryFrameProps) {
-    const [items, setItems] = useState<Item[]>([]); //use type becaue typescript
+    const [items, setItems] = useState<Item[]>([]); //use type becaue typescript LOL
     useEffect(
         () => {
-            const itemsRef = collection(firestore, "items");
-            const filterQuery = query(itemsRef, where("itemCategory", "==", categoryName));
+            const itemsRef = collection(firestore, `/store/chris_restaurant/categories/${categoryName}/good/`);
 
-            onSnapshot(filterQuery, (snapshot) =>
+            onSnapshot(itemsRef, (snapshot) =>
                 setItems(snapshot.docs.map(doc =>  new Item(
-                    doc.data().itemName,
+                    doc.id,
                     doc.data().itemPrice,
-                    doc.data().itemPriceCurrency
+                    doc.data().itemPriceCurrency,
+                    categoryName
                 )))
             ), [];
         });

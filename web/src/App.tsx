@@ -12,8 +12,12 @@ function App() {
     const [categories, setCategories] = useState<Category[]>([]); //use type becaue typescript
     useEffect(
         () =>
-            onSnapshot(collection(firestore, "category"), (snapshot) =>
-                setCategories(snapshot.docs.map(doc => ({id: doc.id, name: doc.data().categoryName})),)
+            //for now we are gonna use chris_restaurant. I will make an account feature
+            onSnapshot(collection(firestore, "store/chris_restaurant/categories/"), (snapshot) =>
+                setCategories(snapshot.docs.map(doc => (
+                    {id: doc.id, name: doc.id}
+                )
+            ))
         ), []);
 
     return (
