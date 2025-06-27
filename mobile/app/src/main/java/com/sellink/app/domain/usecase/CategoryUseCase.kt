@@ -1,4 +1,5 @@
 package com.sellink.app.domain.usecase
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sellink.app.data.Database
 import com.sellink.app.domain.models.Good
@@ -26,14 +27,21 @@ class CategoryUseCase {
         }.await()
     }
 
-    suspend fun getCategories() : List<String>{
-        val ref = db.collection("store")
-            .document("chris_restaurant")
-            .collection("categories")
+    suspend fun getCategories(): List<String> {
+        return try {
+            val ref = db.collection("store")
+                .document("chris_restaurant")
+                .collection("categories")
 
-        val snapshot = ref.get().await()
-        return snapshot.documents.mapNotNull { document ->
-            document.getString("name")
+            val snapshot = ref.get().await()
+
+            Log.d("RefStatus", "${snapshot}")
+            snapshot.documents.mapNotNull { document ->
+                document.getString("name")
+            }
+        } catch (e: Exception) {
+            Log.e("FirestoreError", "Error fetching categories: ${e.message}")
+            emptyList()
         }
     }
 }

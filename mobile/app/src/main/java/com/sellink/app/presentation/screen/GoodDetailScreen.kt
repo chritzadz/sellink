@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
@@ -23,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,7 +49,14 @@ fun GoodDetailScreen(
                 .padding(innerPadding)
                 .padding(16.dp)
         ) {
-            Text(text = "Edit Good", style = MaterialTheme.typography.titleLarge)
+            Text(
+                text = "Edit Good",
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+
+                )
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -143,6 +152,8 @@ fun GoodDetailScreenPreview() {
             currency = "IDR"
         ),
         onBackButtonClick = {},
-        onUpdateButtonClick = {} as (Good, Good) -> Unit
+        onUpdateButtonClick = { good1, good2 ->
+            TODO()
+        }
     )
 }

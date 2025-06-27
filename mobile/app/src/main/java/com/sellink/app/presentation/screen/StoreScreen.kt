@@ -1,6 +1,7 @@
 package com.sellink.app.presentation.screen
 
 import CustomNavBar
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
@@ -17,6 +18,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -27,9 +29,12 @@ import com.sellink.app.data.SelectedNavItem
 import com.sellink.app.domain.models.Good
 import kotlinx.coroutines.flow.StateFlow
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import com.sellink.app.presentation.component.AddGoodItem
 import com.sellink.app.presentation.component.GoodItem
 import kotlinx.coroutines.flow.MutableStateFlow
+import java.util.Locale.Category
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,8 +48,13 @@ fun StoreScreen(
     goods: StateFlow<List<Good>>,
     onGoodItemClick: (Good) -> Unit
 ) {
-    val categoryList = categories.collectAsState().value
-    val goodsList = goods.collectAsState().value
+    val categoryList = categories.collectAsState()
+    val goodsList = goods.collectAsState()
+
+    LaunchedEffect(Unit) {
+        println("Categories: ${categoryList.value}")
+        println("Goods: ${goodsList.value}")
+    }
 
     Scaffold(
         modifier = Modifier
@@ -73,7 +83,7 @@ fun StoreScreen(
                     .padding(10.dp)
             )
             LazyColumn {
-                items(categoryList) { category ->
+                items(categoryList.value) { category ->
                     Text(
                         text = category,
                         fontSize = 20.sp,
@@ -87,14 +97,14 @@ fun StoreScreen(
                             .padding(10.dp)
                             .height(150.dp)
                     ){
-                        repeat(getGoodsByCategorySize(category, goodsList)){ index ->
+                        repeat(getGoodsByCategorySize(category, goodsList.value)){ index ->
                             Box(
                                 modifier = Modifier
                                     .horizontalScroll(rememberScrollState())
                                     .padding(2.dp)
                             ) {
-                                GoodItem(getGoodsByCategory(category, goodsList)[index]) {
-                                    onGoodItemClick(getGoodsByCategory(category, goodsList)[index])
+                                GoodItem(getGoodsByCategory(category, goodsList.value)[index]) {
+                                    onGoodItemClick(getGoodsByCategory(category, goodsList.value)[index])
                                 }
                             }
                         }
@@ -154,23 +164,21 @@ fun StoreScreenPreview() {
 }
 
 fun getGoodsByCategory(category: String, goods: List<Good>): List<Good> {
-    val tempList = mutableListOf<Good>()
+    val filteredGoods =  mutableListOf<Good>()
 
-    for (good in goods) {
-        if (good.category == category) {
-            tempList.add(good)
+    Log.d("GOODS STATUS", "is it? " + goods.isEmpty())
+
+    for (good in goods){
+        println(good.category + " : " + category)
+        if (good.category.equals(category)){
+            filteredGoods.add(good)
         }
     }
-    return tempList
+
+    Log.d("GoodsFilter", "Category: $category, Goods: $filteredGoods")
+    return filteredGoods
 }
 
 fun getGoodsByCategorySize(category: String, goods: List<Good>): Int {
-    val tempList = mutableListOf<Good>()
-
-    for (good in goods) {
-        if (good.category == category) {
-            tempList.add(good)
-        }
-    }
-    return tempList.size
+    return getGoodsByCategory(category, goods).size
 }

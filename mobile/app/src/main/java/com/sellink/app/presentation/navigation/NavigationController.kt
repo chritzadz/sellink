@@ -17,13 +17,10 @@ import androidx.navigation3.runtime.rememberSavedStateNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.navigation3.ui.rememberSceneSetupNavEntryDecorator
 import com.sellink.app.domain.models.Good
-import com.sellink.app.domain.usecase.CategoryUseCase
-import com.sellink.app.domain.usecase.GoodUseCase
 import com.sellink.app.presentation.screen.GoodDetailScreen
 import com.sellink.app.presentation.screen.HomeScreen
 import com.sellink.app.presentation.screen.OrderScreen
 import com.sellink.app.presentation.screen.StoreScreen
-import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -43,7 +40,6 @@ fun NavigationController (
     modifier: Modifier = Modifier
 ) {
     val backStack = rememberNavBackStack(HomeScreen)
-
     val storeViewModel: StoreViewModel = viewModel()
 
     NavDisplay(
