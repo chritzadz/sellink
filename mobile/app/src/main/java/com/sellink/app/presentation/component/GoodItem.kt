@@ -56,19 +56,20 @@ fun GoodItem(
             )
             Text(
                 text = good.name,
-                fontSize = 12.sp,
+                fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
                 lineHeight = 1.em,
                 modifier = Modifier
-                    .padding(top = 3.dp, start = 5.dp)
+                    .padding(top = 3.dp, start = 5.dp, end = 5.dp)
 
             )
             Text(
                 text = "This is the description of the product",
-                fontSize = 6.sp,
+                fontSize = 10.sp,
                 lineHeight = 1.em,
                 modifier = Modifier
                     .padding(top = 2.dp, start = 5.dp, end = 5.dp)
+                    .height(23.dp)
             )
             Row (
                 modifier = Modifier
@@ -77,7 +78,7 @@ fun GoodItem(
             ){
                 Text(
                     text = "${good.currency} ${good.price}",
-                    fontSize = 8.sp,
+                    fontSize = 10.sp,
                     lineHeight = 1.em,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier

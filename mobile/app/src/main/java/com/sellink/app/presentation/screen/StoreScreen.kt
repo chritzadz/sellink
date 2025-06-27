@@ -43,11 +43,10 @@ fun StoreScreen(
     onOrderNavClick: () -> Unit,
     onStoreNavClick: () -> Unit,
     onHomeNavClick: () -> Unit,
-    onAddGood: suspend (Good) -> Unit,
-    onAddCategory: suspend (String) -> Unit,
     categories: StateFlow<List<String>>,
     goods: StateFlow<List<Good>>,
-    onGoodItemClick: (Good) -> Unit
+    onGoodItemClick: (Good) -> Unit,
+    onAddGoodItemClick: (String) -> Unit
 ) {
     val categoryList = categories.collectAsState()
     val goodsList = goods.collectAsState()
@@ -75,6 +74,10 @@ fun StoreScreen(
                 .fillMaxWidth()
                 .padding(innerPadding)
         ) {
+            Box(
+                modifier = Modifier
+                    .height(50.dp)
+            )
             Text( //Name of Store
                 text = "Your Store",
                 fontSize = 40.sp,
@@ -90,12 +93,12 @@ fun StoreScreen(
                         fontSize = 20.sp,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(10.dp)
+                            .padding(start = 10.dp, bottom = 3.dp, top = 10.dp)
                     )
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(10.dp)
+                            .padding(start = 10.dp)
                             .height(150.dp)
                     ){
                         repeat(getGoodsByCategorySize(category, goodsList.value)){ index ->
@@ -109,7 +112,9 @@ fun StoreScreen(
                                 }
                             }
                         }
-                        AddGoodItem()
+                        AddGoodItem(category){
+                            onAddGoodItemClick(category)
+                        }
                     }
                 }
             }
@@ -156,11 +161,10 @@ fun StoreScreenPreview() {
         onOrderNavClick = { /* Handle Order Navigation */ },
         onStoreNavClick = { /* Handle Store Navigation */ },
         onHomeNavClick = { /* Handle Home Navigation */ },
-        onAddGood = {},
-        onAddCategory = {},
         categories = sampleCategories,
         goods = sampleGoods,
-        onGoodItemClick = {}
+        onGoodItemClick = {},
+        onAddGoodItemClick = {}
     )
 }
 

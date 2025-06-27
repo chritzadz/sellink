@@ -17,6 +17,7 @@ import androidx.navigation3.runtime.rememberSavedStateNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.navigation3.ui.rememberSceneSetupNavEntryDecorator
 import com.sellink.app.domain.models.Good
+import com.sellink.app.presentation.screen.AddGoodScreen
 import com.sellink.app.presentation.screen.GoodDetailScreen
 import com.sellink.app.presentation.screen.HomeScreen
 import com.sellink.app.presentation.screen.OrderScreen
@@ -33,7 +34,10 @@ data object OrderScreen: NavKey
 data object StoreScreen: NavKey
 
 @Serializable
-data class GoodDetailScreen(val good: Good): NavKey
+data class EditGoodDetailScreen(val good: Good): NavKey
+
+@Serializable
+data class AddGoodScreen(val categoryFrom: String): NavKey
 
 @Composable
 fun NavigationController (
@@ -99,23 +103,20 @@ fun NavigationController (
                             onStoreNavClick = {
                                 backStack.add(StoreScreen)
                             },
-                            onAddGood = { good ->
-                                storeViewModel.addGood(good)
-                            },
-                            onAddCategory = { category ->
-                                storeViewModel.addCategory(category)
-                            },
                             categories =
                                 storeViewModel.categories,
                             goods =
                                 storeViewModel.goods,
                             onGoodItemClick = { good ->
-                                backStack.add(GoodDetailScreen(good))
+                                backStack.add(EditGoodDetailScreen(good))
+                            },
+                            onAddGoodItemClick = { category ->
+                                backStack.add(AddGoodScreen(categoryFrom = category))
                             }
                         )
                     }
                 }
-                is GoodDetailScreen -> {
+                is EditGoodDetailScreen -> {
                     NavEntry(
                         key = key
                     ) {
@@ -129,6 +130,22 @@ fun NavigationController (
                                 storeViewModel.updateGood(old, new)
                                 backStack.removeAt(backStack.size - 1)
                             }
+                        )
+                    }
+                }
+                is AddGoodScreen -> {
+                    NavEntry(
+                        key = key
+                    ) {
+                        AddGoodScreen(
+                            onBackButtonClick = {
+                                backStack.add(StoreScreen)
+                            },
+                            onAddButtonClick = { good ->
+                                storeViewModel.addGood(good)
+                                backStack.removeAt(backStack.size - 1)
+                            },
+                            categoryFrom = key.categoryFrom
                         )
                     }
                 }

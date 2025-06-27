@@ -29,7 +29,8 @@ import com.sellink.app.domain.models.Order
 
 @Composable
 fun AddGoodItem(
-
+    category: String,
+    onClick: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -40,9 +41,9 @@ fun AddGoodItem(
                 border = BorderStroke(1.dp, Color.Black),
                 shape = RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp)
             )
-            .clickable(){
-
-            }
+            .clickable(
+                onClick = onClick
+            )
 
     ){
         Image(
@@ -62,5 +63,8 @@ fun AddGoodItem(
 @Preview
 @Composable
 fun AddGoodItemPreview(){
-    AddGoodItem()
+    AddGoodItem(
+        onClick = {},
+        category = "Category1"
+    )
 }
