@@ -4,11 +4,17 @@ import type Item from "../../model/Item.ts";
 interface ItemFrameProps {
     index: number;
     item: Item;
+    isHovering: boolean;
+    onHover: (hovering: number) => void;
+
 }
 
-function ItemFrame({ index, item }: ItemFrameProps) {
+function ItemFrame({ index, item, isHovering, onHover}: ItemFrameProps) {
     return (
-        <div className="w-54 h-74 mr-3 flex-shrink-0 shadow-md"> {/* Static width and height */}
+        <div className={`w-54 h-74 mr-3 flex-shrink-0 shadow-md transition-transform duration-300 ease-in-out hover:scale-110`}
+            onMouseEnter={() => onHover(index)} // Pass the index when hovering
+            onMouseLeave={() => onHover(-1)}
+>
             <div>
                 <img className="box-border object-cover w-54 h-46" src={pandaLogo} alt="panda"/>
             </div>

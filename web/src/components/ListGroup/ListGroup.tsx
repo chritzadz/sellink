@@ -1,5 +1,5 @@
 import ItemFrame from '../ItemFrame';
-import styles from './ListGroup.module.css';
+import React, { useState } from 'react'
 import type Item from "../../model/Item.ts";
 
 interface ListGroupProps {
@@ -7,10 +7,16 @@ interface ListGroupProps {
 }
 
 function ListGroup({ items }: ListGroupProps) {
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const handleHover = (index: number) => {
+        setHoveredIndex(index === hoveredIndex ? null : index);
+    };
+
+
     return (
-        <div className="h-76 flex flex-row overflow-x-scroll overflow-y-hidde scrollbar-hidden"> {/* Set height and overflow */}
+        <div className="items-center h-84 flex flex-row overflow-x-scroll overflow-y-hidden scrollbar-hidden"> {/* Set height and overflow */}
             {items.map((item, index) => (
-                <ItemFrame key={index} index={index} item={item} />
+                <ItemFrame key={index} index={index} item={item} isHovering={hoveredIndex === index} onHover={handleHover}/>
             ))}
         </div>
     );
