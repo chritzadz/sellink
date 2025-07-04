@@ -23,7 +23,7 @@ function App() {
     return (
         <>
             <div><Header/></div>
-            <div className = "flex">
+            <div className = "">
                 {categories.map((category, index) => (
                     <CategoryFrame categoryName={category.name} categoryIndex={index} />
                 ))}

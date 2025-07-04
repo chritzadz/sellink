@@ -11,7 +11,7 @@ interface CategoryFrameProps {
 }
 
 function CategoryFrame({categoryName, categoryIndex}: CategoryFrameProps) {
-    const [items, setItems] = useState<Item[]>([]); //use type becaue typescript LOL
+    const [items, setItems] = useState<Item[]>([]); //use type because typescript LOL
     useEffect(
         () => {
             const itemsRef = collection(firestore, `/store/chris_restaurant/categories/${categoryName}/good/`);
@@ -19,8 +19,8 @@ function CategoryFrame({categoryName, categoryIndex}: CategoryFrameProps) {
             onSnapshot(itemsRef, (snapshot) =>
                 setItems(snapshot.docs.map(doc =>  new Item(
                     doc.id,
-                    doc.data().itemPrice,
-                    doc.data().itemPriceCurrency,
+                    doc.data().price,
+                    doc.data().currency,
                     categoryName
                 )))
             ), [];
@@ -29,9 +29,11 @@ function CategoryFrame({categoryName, categoryIndex}: CategoryFrameProps) {
 
     return (
         <>
-            <div className={styles.general}>
-                <h1>{categoryName}</h1>
-                <ListGroup items={items} />
+            <div className="pl-2">
+                <h1 className="text-4xl pb-2">{categoryName}</h1>
+                <div> {/* Wrap ListGroup in a div */}
+                    <ListGroup items={items} />
+                </div>
             </div>
         </>
     );
