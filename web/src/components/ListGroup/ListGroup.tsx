@@ -2,6 +2,7 @@ import ItemFrame from '../ItemFrame';
 import React, { useState } from 'react'
 import type Item from "../../model/Item.ts";
 
+
 interface ListGroupProps {
     items: Item[];
 }
@@ -14,9 +15,11 @@ function ListGroup({ items }: ListGroupProps) {
 
 
     return (
-        <div className="items-center h-84 flex flex-row overflow-x-scroll overflow-y-hidden scrollbar-hidden"> {/* Set height and overflow */}
+        <div className="flex flex-wrap w-full">
             {items.map((item, index) => (
-                <ItemFrame key={index} index={index} item={item} isHovering={hoveredIndex === index} onHover={handleHover}/>
+                <div className='w-1/8'>
+                    <ItemFrame key={index} index={index} item={item} isHovering={hoveredIndex === index} onHover={handleHover}/>
+                </div>
             ))}
         </div>
     );

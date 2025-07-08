@@ -1,12 +1,11 @@
 import Header from './components/Header';
 import CategoryFrame from "./components/CategoryFrame";
+import FilterFrame from "./components/FilterFrame";
 import {firestore} from "./database/database";
 import {useEffect, useState} from "react";
 import {collection, onSnapshot} from "firebase/firestore"
+import Category from "./model/Category";
 
-interface Category {
-    name: string;
-}
 
 function App() {
     const [categories, setCategories] = useState<Category[]>([]); //use type because typescript
@@ -22,10 +21,15 @@ function App() {
 
     return (
         <>
-            <div><Header/></div>
-            <div className = "">
+            <div className='overflow-hidden max-w-full'><Header/></div>
+            <div className='overflow-hidden max-w-full'>
+                <FilterFrame categories={categories}/>
+            </div>
+            <div className = "overflow-hidden max-w-full">
                 {categories.map((category, index) => (
-                    <CategoryFrame categoryName={category.name} categoryIndex={index} />
+                    <div className='mx-5'>
+                        <CategoryFrame categoryName={category.name} categoryIndex={index} />
+                    </div>
                 ))}
             </div>
         </>

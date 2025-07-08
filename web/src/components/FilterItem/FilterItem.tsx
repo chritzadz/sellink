@@ -1,0 +1,18 @@
+import type { List } from "postcss/lib/list";
+import Category from "../../model/Category"
+
+interface FilterItemProps {
+    categoryName: String
+}
+
+function FilterItem({categoryName}: FilterItemProps) {
+    return(
+        <>
+            <div className="bg-gray-300 flex items-center justify-center round rounded-3xl border border-black">
+                <p className="mx-3 my-2 text-xs font-bold">{categoryName}</p>
+            </div>
+        </>
+    )
+}
+
+export default FilterItem;

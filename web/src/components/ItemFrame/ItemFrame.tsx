@@ -11,7 +11,7 @@ interface ItemFrameProps {
 
 function ItemFrame({ index, item, isHovering, onHover}: ItemFrameProps) {
     return (
-        <div className={`w-54 h-74 mr-3 flex-shrink-0 shadow-md transition-transform duration-300 ease-in-out hover:scale-110`}
+        <div className={`bg-white w-full h-74 transition-transform duration-300 ease-in-out hover:scale-110 hover:z-20 relative`}
             onMouseEnter={() => onHover(index)} // Pass the index when hovering
             onMouseLeave={() => onHover(-1)}
 >
