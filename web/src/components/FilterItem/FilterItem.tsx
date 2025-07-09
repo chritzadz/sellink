@@ -2,13 +2,14 @@ import type { List } from "postcss/lib/list";
 import Category from "../../model/Category"
 
 interface FilterItemProps {
-    categoryName: String
+    categoryName: String;
+    onClick: (name: String) => void;
 }
 
-function FilterItem({categoryName}: FilterItemProps) {
+function FilterItem({categoryName, onClick}: FilterItemProps) {
     return(
         <>
-            <div className="bg-gray-300 flex items-center justify-center round rounded-3xl border border-black">
+            <div onClick={() => onClick(categoryName)} className="bg-gray-300 flex items-center justify-center round rounded-3xl border border-black">
                 <p className="mx-3 my-2 text-xs font-bold">{categoryName}</p>
             </div>
         </>

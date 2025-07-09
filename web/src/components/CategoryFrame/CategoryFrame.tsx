@@ -29,8 +29,8 @@ function CategoryFrame({categoryName, categoryIndex}: CategoryFrameProps) {
 
     return (
         <>
-            <div className="">
-                <h1 className="text-3xl">{categoryName}</h1>
+            <div className="m-0">
+                <h1 className="text- m-0 mb-2">{categoryName}</h1>
                 <div>
                     <ListGroup items={items} />
                 </div>
