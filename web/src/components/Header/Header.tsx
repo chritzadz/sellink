@@ -4,10 +4,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdOutlineLanguage } from "react-icons/md";
 import { HiMiniBars3 } from "react-icons/hi2";
 
-
-
-
-
 function Header() {
     return (
         <>

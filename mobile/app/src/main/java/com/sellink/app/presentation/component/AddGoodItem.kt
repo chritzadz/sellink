@@ -34,13 +34,8 @@ fun AddGoodItem(
 ) {
     Box(
         modifier = Modifier
-            .height(150.dp)
-            .width(115.dp)
+            .height(180.dp)
             .background(Color.White)
-            .border(
-                border = BorderStroke(1.dp, Color.Black),
-                shape = RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp)
-            )
             .clickable(
                 onClick = onClick
             )

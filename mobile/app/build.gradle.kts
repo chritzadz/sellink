@@ -79,4 +79,5 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore.ktx)
+    implementation("com.google.accompanist:accompanist-flowlayout:0.36.0")
 }

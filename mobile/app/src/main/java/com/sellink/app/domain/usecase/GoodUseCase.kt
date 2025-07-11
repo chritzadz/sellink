@@ -68,7 +68,6 @@ class GoodUseCase {
                 val currency = goodsDocument["currency"].toString()
 
                 println(name);
-
                 val good = Good(name, price, category, currency)
                 goodsList.add(good)
             }

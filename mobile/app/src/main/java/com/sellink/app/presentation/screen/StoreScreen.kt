@@ -4,15 +4,21 @@ import CustomNavBar
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -95,25 +101,29 @@ fun StoreScreen(
                             .fillMaxWidth()
                             .padding(start = 10.dp, bottom = 3.dp, top = 10.dp)
                     )
-                    Row(
+                    Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(start = 10.dp)
-                            .height(150.dp)
-                            .horizontalScroll(rememberScrollState())
+                            .padding(top = 10.dp)
                     ){
-                        repeat(getGoodsByCategorySize(category, goodsList.value)){ index ->
-                            Box(
-                                modifier = Modifier
-                                    .padding(2.dp)
-                            ) {
-                                GoodItem(getGoodsByCategory(category, goodsList.value)[index]) {
-                                    onGoodItemClick(getGoodsByCategory(category, goodsList.value)[index])
+                        FlowRow(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 10.dp, end = 10.dp),
+                                maxItemsInEachRow = 2,
+                                horizontalArrangement = Arrangement.Start,
+                        ) {
+                            getGoodsByCategory(category, goodsList.value).forEach { good ->
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth(0.5f) //REMEBER THISIIDSIISISISISIS
+                                ) {
+                                    GoodItem(
+                                        good,
+                                        onClick = { onGoodItemClick(good) }
+                                    )
                                 }
                             }
-                        }
-                        AddGoodItem(category){
-                            onAddGoodItemClick(category)
                         }
                     }
                 }

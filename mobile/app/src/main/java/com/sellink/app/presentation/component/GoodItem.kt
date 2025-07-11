@@ -32,27 +32,20 @@ import com.sellink.app.domain.models.Good
 @Composable
 fun GoodItem(
     good: Good,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Box(
         modifier = Modifier
-            .height(150.dp)
-            .width(115.dp)
-            .border(
-                border = BorderStroke(1.dp, Color.Black),
-                shape = RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp))
+            .height(180.dp)
             .clickable(onClick = onClick)
     ){
-        Column {
+        Column{
             Image(
                 painter = painterResource(id = R.drawable.ic_launcher_background),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(65.dp)
-                    .clip(
-                        shape = RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp)
-                    )
             )
             Text(
                 text = good.name,
