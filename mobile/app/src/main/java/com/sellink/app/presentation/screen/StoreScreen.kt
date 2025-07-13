@@ -71,14 +71,7 @@ fun StoreScreen(
 
     Scaffold(
         modifier = Modifier
-            .fillMaxWidth()
-            .background(
-                brush = Brush.linearGradient(
-                    colors = listOf(Color(0xEEEFE00), Color(0xA7C1A80)),
-                    start = Offset(0f, 0f),
-                    end = Offset.Infinite
-                )
-            ),
+            .fillMaxWidth(),
         bottomBar = {
             CustomNavBar(
                 SelectedNavItem.StoreRoute,
@@ -92,6 +85,9 @@ fun StoreScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .background(
+                    color = Color(0xFFF6F6F6)
+                )
                 .padding(innerPadding)
         ) {
             Box(
@@ -101,6 +97,7 @@ fun StoreScreen(
             Text( //Name of Store
                 text = "Your Store",
                 fontSize = 40.sp,
+                color = Color(0xFF212121),
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -122,6 +119,7 @@ fun StoreScreen(
                     ){
                         Text(
                             text = category,
+                            color = Color(0xFF212121),
                             fontSize = 24.sp,
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -157,6 +155,7 @@ fun StoreScreen(
                             }
                         }
                         HorizontalDivider(
+                            color = Color(0xFF212121),
                             thickness = 2.dp,
                             modifier = Modifier
                                 .padding(top = 20.dp)

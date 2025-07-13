@@ -61,16 +61,18 @@ fun OrderScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(innerPadding)
-                .background(Color.Green)
+                .background(Color(0xFFF2E7D5))
         ) {
             Box( //Spacing for notification
                 modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color(0xFF6D9886))
                     .height(50.dp)
-                    .background(Color.Red)
             )
             Box( //Upper Navigation (Ongoing and Completed)
                 modifier = Modifier
                     .height(40.dp)
+                    .background(Color(0xFF6D9886))
             ){
                 Row( //Ongoing and Completed horizontal layout
                     modifier = Modifier
