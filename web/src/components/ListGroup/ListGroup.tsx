@@ -17,7 +17,7 @@ function ListGroup({ items }: ListGroupProps) {
     return (
         <div className="flex flex-wrap w-full">
             {items.map((item, index) => (
-                <div className='w-1/6'>
+                <div className='w-1/4 mb-4'>
                     <ItemFrame key={index} index={index} item={item} isHovering={hoveredIndex === index} onHover={handleHover}/>
                 </div>
             ))}

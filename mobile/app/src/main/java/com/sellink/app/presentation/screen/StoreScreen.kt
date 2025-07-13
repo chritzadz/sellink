@@ -38,6 +38,8 @@ import kotlinx.coroutines.flow.StateFlow
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import com.sellink.app.presentation.component.AddGoodItem
 import com.sellink.app.presentation.component.GoodItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -64,7 +66,14 @@ fun StoreScreen(
 
     Scaffold(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .background(
+                brush = Brush.linearGradient(
+                    colors = listOf(Color(0xEEEFE00), Color(0xA7C1A80)),
+                    start = Offset(0f, 0f),
+                    end = Offset.Infinite
+                )
+            ),
         bottomBar = {
             CustomNavBar(
                 SelectedNavItem.StoreRoute,
