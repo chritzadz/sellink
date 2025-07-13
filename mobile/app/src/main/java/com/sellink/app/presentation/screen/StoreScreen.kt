@@ -3,6 +3,7 @@ package com.sellink.app.presentation.screen
 import CustomNavBar
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,7 +22,10 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CornerBasedShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,6 +44,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.RectangleShape
 import com.sellink.app.presentation.component.AddGoodItem
 import com.sellink.app.presentation.component.GoodItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -99,41 +104,63 @@ fun StoreScreen(
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp)
+                    .padding(start = 20.dp, end = 20.dp, top = 10.dp)
             )
-            LazyColumn {
-                items(categoryList.value) { category ->
-                    Text(
-                        text = category,
-                        fontSize = 20.sp,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 10.dp, bottom = 3.dp, top = 10.dp)
+            LazyColumn(
+                modifier = Modifier
+                    .border(
+                        width = 0.5.dp,
+                        color = Color.Transparent,
+                        shape = RoundedCornerShape(0.dp)
                     )
-                    Box(
+                    .padding(start = 20.dp, end = 20.dp)
+            ){
+                items(categoryList.value) { category ->
+                    Column(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 10.dp)
+                            .padding(top = 10.dp, bottom = 10.dp)
                     ){
-                        FlowRow(
+                        Text(
+                            text = category,
+                            fontSize = 24.sp,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(start = 10.dp, end = 10.dp),
+                                .padding(bottom = 3.dp)
+                        )
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                        ){
+                            FlowRow(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 10.dp),
                                 maxItemsInEachRow = 2,
                                 horizontalArrangement = Arrangement.Start,
-                        ) {
-                            getGoodsByCategory(category, goodsList.value).forEach { good ->
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.5f) //REMEBER THISIIDSIISISISISIS
-                                ) {
-                                    GoodItem(
-                                        good,
-                                        onClick = { onGoodItemClick(good) }
-                                    )
+                            ) {
+                                getGoodsByCategory(category, goodsList.value).forEach { good ->
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth(0.5f) //REMEBER THISIIDSIISISISISIS
+                                            .border(
+                                                width = 1.dp,
+                                                color = Color.Transparent,
+                                                shape = RoundedCornerShape(8.dp)
+                                            )
+                                    ) {
+                                        GoodItem(
+                                            good,
+                                            onClick = { onGoodItemClick(good) }
+                                        )
+                                    }
                                 }
                             }
                         }
+                        HorizontalDivider(
+                            thickness = 2.dp,
+                            modifier = Modifier
+                                .padding(top = 20.dp)
+                        )
                     }
                 }
             }

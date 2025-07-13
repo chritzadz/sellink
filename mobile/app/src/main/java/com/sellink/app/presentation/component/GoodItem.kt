@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,7 +38,8 @@ fun GoodItem(
 ) {
     Box(
         modifier = Modifier
-            .height(180.dp)
+            .padding(bottom = 20.dp)
+            .wrapContentHeight()
             .clickable(onClick = onClick)
     ){
         Column{
@@ -45,37 +48,36 @@ fun GoodItem(
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(65.dp)
-            )
+                    .height(80.dp))
             Text(
                 text = good.name,
-                fontSize = 14.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 lineHeight = 1.em,
                 modifier = Modifier
                     .padding(top = 3.dp, start = 5.dp, end = 5.dp)
-
             )
             Text(
-                text = "This is the description of the product",
-                fontSize = 10.sp,
+                text = "This is the description of the product, This will showcase the",
+                fontSize = 12.sp,
                 lineHeight = 1.em,
                 modifier = Modifier
                     .padding(top = 2.dp, start = 5.dp, end = 5.dp)
-                    .height(23.dp)
+                    .height(25.dp)
             )
             Row (
                 modifier = Modifier
-                    .padding(top = 2.dp, start = 5.dp, end = 5.dp)
+                    .padding(top = 3.dp, start = 5.dp, end = 5.dp)
 
             ){
                 Text(
                     text = "${good.currency} ${good.price}",
-                    fontSize = 10.sp,
+                    fontSize = 16.sp,
                     lineHeight = 1.em,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .weight(1f)
+                        .padding(top = 3.dp)
                 )
             }
         }
