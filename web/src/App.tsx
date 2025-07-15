@@ -29,9 +29,10 @@ function App() {
     };
 
     return (
-        <>
-            <div className='overflow-hidden max-w-full'><Header/></div>
-            <div className='overflow-hidden max-w-full'>
+        <div className="bg-off-off-white">
+            <div className='overflow-hidden max-w-full fixed top-0 left-0 w-full z-10'><Header/></div>
+            <div className="mt-15">
+                <div className='overflow-hidden max-w-full'>
                 <FilterFrame categories={categories} onCategoryClick={scrollToCategory}/>
             </div>
             <div className="overflow-hidden max-w-full">
@@ -45,7 +46,8 @@ function App() {
                     </div>
                 ))}
             </div>
-        </>
+            </div>
+        </div>
     );
 }
 

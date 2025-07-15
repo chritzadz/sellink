@@ -86,7 +86,7 @@ fun StoreScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
-                    color = Color(0xFFF6F6F6)
+                    color = Color(0xFFD9CAB3)
                 )
                 .padding(innerPadding)
         ) {
@@ -110,7 +110,7 @@ fun StoreScreen(
                         color = Color.Transparent,
                         shape = RoundedCornerShape(0.dp)
                     )
-                    .padding(start = 20.dp, end = 20.dp)
+                    .padding(start = 20.dp, end = 1.dp)
             ){
                 items(categoryList.value) { category ->
                     Column(
@@ -158,7 +158,7 @@ fun StoreScreen(
                             color = Color(0xFF212121),
                             thickness = 2.dp,
                             modifier = Modifier
-                                .padding(top = 20.dp)
+                                .padding(top = 20.dp, end = 20.dp)
                         )
                     }
                 }

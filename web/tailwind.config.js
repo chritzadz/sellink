@@ -7,6 +7,9 @@ module.exports = {
             borderRadius: {
             },
             colors: {
+                'off-off-white': '#FFF2E7D5',
+                'light-green-custom': '#FF6D9886',
+                'black-custom': '#FF212121'
             },
             spacing: {
             },

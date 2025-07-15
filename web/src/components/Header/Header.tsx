@@ -7,7 +7,7 @@ import { HiMiniBars3 } from "react-icons/hi2";
 function Header() {
     return (
         <>
-            <div className="shadow-sm max-w-full h-15 flex items-center overflow-hidden border-b border-gray-300">
+            <div className="bg-light-green-custom shadow-sm max-w-full h-15 flex items-center overflow-hidden border-b-2 border-black-custom">
                 <h1 className="m-0 text-3xl w-2/10 h-10 pl-12">Sellink</h1>
                 <div className="w-6/10 h-10 items-center flex justify-center">
                     <div className="w-2/3">

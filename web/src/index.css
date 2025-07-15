@@ -10,3 +10,10 @@
         scrollbar-width: none;
     }
 }
+
+@theme {
+    --color-regal-blue: #243c5a;
+    --color-off-off-white: #F2E7D5;
+    --color-light-green-custom: #6D9886;
+    --color-black-custom: #212121;
+}

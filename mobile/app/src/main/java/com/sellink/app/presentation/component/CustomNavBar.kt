@@ -24,7 +24,7 @@ fun CustomNavBar(
             },
             icon = { Text("Order", color = if (orderSelected(selectedNavItem)) Color(0xFFF6F6F6) else Color(0xFF212121)) },
             colors = NavigationBarItemDefaults.colors(
-                selectedTextColor = Color(0xFFF6F6F6),
+                selectedTextColor = Color(0xFF212121),
                 unselectedTextColor = Color(0xFF212121),
                 selectedIconColor = Color.Black,
                 unselectedIconColor = Color.Black,

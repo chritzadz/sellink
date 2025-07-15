@@ -1,3 +1,7 @@
 @tailwind utilities;
 @import "tailwindcss/preflight";
 @import "tailwindcss";
+
+@theme {
+    --color-regal-blue: #243c5a;
+}

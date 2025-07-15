@@ -9,7 +9,7 @@ interface FilterItemProps {
 function FilterItem({categoryName, onClick}: FilterItemProps) {
     return(
         <>
-            <div onClick={() => onClick(categoryName)} className="bg-gray-300 flex items-center justify-center round rounded-3xl border border-black">
+            <div onClick={() => onClick(categoryName)} className="bg-light-green-custom flex items-center justify-center round rounded-3xl border border-black">
                 <p className="mx-3 my-2 text-xs font-bold">{categoryName}</p>
             </div>
         </>
