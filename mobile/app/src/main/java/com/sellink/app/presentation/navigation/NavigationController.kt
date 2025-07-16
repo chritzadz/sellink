@@ -1,5 +1,6 @@
 package com.sellink.app.presentation.navigation
 import StoreViewModel
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -8,6 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavEntry
@@ -21,6 +23,7 @@ import com.sellink.app.presentation.screen.AddGoodScreen
 import com.sellink.app.presentation.screen.GoodDetailScreen
 import com.sellink.app.presentation.screen.HomeScreen
 import com.sellink.app.presentation.screen.OrderScreen
+import com.sellink.app.presentation.screen.SignupScreen
 import com.sellink.app.presentation.screen.StoreScreen
 import kotlinx.serialization.Serializable
 
@@ -32,6 +35,9 @@ data object OrderScreen: NavKey
 
 @Serializable
 data object StoreScreen: NavKey
+
+@Serializable
+data object SignupScreen: NavKey
 
 @Serializable
 data class EditGoodDetailScreen(val good: Good): NavKey
@@ -146,6 +152,15 @@ fun NavigationController (
                                 backStack.removeAt(backStack.size - 1)
                             },
                             categoryFrom = key.categoryFrom
+                        )
+                    }
+                }
+                is SignupScreen -> {
+                    NavEntry(
+                        key = key
+                    ){
+                        SignupScreen(
+                            modifier = Modifier.padding(0.dp)
                         )
                     }
                 }

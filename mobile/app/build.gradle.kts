@@ -30,6 +30,11 @@ android {
         }
     }
     compileOptions {
+        // For AGP 4.1+
+        isCoreLibraryDesugaringEnabled = true
+        // For AGP 4.0
+        // coreLibraryDesugaringEnabled = true
+
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -80,4 +85,10 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore.ktx)
     implementation("com.google.accompanist:accompanist-flowlayout:0.36.0")
+
+    implementation(libs.androidx.credentials.v160alpha03)
+    implementation(libs.credentials.play.services.auth)
+    implementation(libs.googleid)
+
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 }
